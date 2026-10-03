@@ -8,18 +8,18 @@ public class Solution {
      */
 
     public double average(double t1, double t2, double t3, double t4) {
-        // remove 0.0 and return your answer
-        return 0.0;
+        
+        return (t1+t2+t3+t4)/4;
     }
 
     public int roundAverage(double average) {
-        // remove 0 and return your answer
-        return 0;
+
+        return (int) (average+0.5);
     }
 
     public boolean isPassing(int roundedAverage) {
-        // remove false and return your answer
-        return false;
+        
+        return roundedAverage >= 64;
     }
 
     /*
@@ -27,14 +27,14 @@ public class Solution {
     */
 
     public double totalStock(int shares, double price) {
-        // remove 0.0 and return your answer
-        return 0.0;
+
+        return shares * price;
     }
 
 
     public int roundValueChange(double totalStock) {
-        // remove 0 and return your answer
-        return 0;
+
+        return (int) Math.round(totalStock);
     }
 
     /*
@@ -42,14 +42,26 @@ public class Solution {
     */
    
     public double adjustDigits(double userDouble) {
-        // remove 0.0 and return your answer
-        return 0.0;
+        int num = (int) Math.round(userDouble * 100);
+        int whole = num / 100; 
+        int decimals = num % 100;
+
+        int hundreds = whole / 100;
+        int tens = whole / 10 % 10;
+        int ones = whole % 10; 
+        int adjustedTens = (decimals / 10 + 1) % 10;
+        int adjustedOnes = (decimals % 10 + 1) % 10;
+        int adjustedWhole = (tens + 1) % 10 * 10 + (ones + 1) % 10;
+
+        if (whole >= 100) {
+            adjustedWhole += (hundreds + 1) % 10 * 100;
+        }
+
+        return adjustedWhole + (adjustedTens * 10 + adjustedOnes) / 100.0;
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        System.out.println(s.adjustDigits(120.90));
-        //231.01
     }
 
 }
